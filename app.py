@@ -30,5 +30,15 @@ def add_student():
     cursor.close()
     conn.close()
     return redirect("/")
+@app.route("/delete/<int:student_id>", methods=["POST"])
+def delete_student(student_id):
+    conn=helper_function()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM Student WHERE ID=%s",(student_id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect("/")
+
 if __name__ == "__main__":
     app.run(debug=True)
