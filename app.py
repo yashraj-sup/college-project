@@ -39,6 +39,32 @@ def delete_student(student_id):
     cursor.close()
     conn.close()
     return redirect("/")
-
+@app.route("/edit/<int:student_id>")
+def edit_student(student_id):
+    conn=helper_function()
+    cursor=conn.cursor()
+    cursor.execute("SELECT *FROM Student WHERE ID=%s",(student_id,))
+    row=cursor.fetchone() #fetchone() reurns the next single row of a query result as a tuple, returns None when no more rows are available
+    cursor.close()
+    conn.close()
+    if row is None:
+        return "Student not found"
+    return render_template("edit.html", student=row)
+@app.route("/update/<int:student_id>", methods=["POST"])
+def update_student(student_id):
+    try:
+            name=request.form["student_name"]
+            age=int(request.form["student_age"])
+            marks=int(request.form["student_marks"])
+    except ValueError:
+            return "Invalid value"
+    conn=helper_function()
+    cursor=conn.cursor()
+    cursor.execute("UPDATE Student SET Name=%s, Age=%s, Marks=%s WHERE ID=%s",(name, age, marks, student_id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect("/")
+    
 if __name__ == "__main__":
     app.run(debug=True)

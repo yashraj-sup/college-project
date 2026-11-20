@@ -31,7 +31,7 @@
                 <td>{{s.1}}</td>
                 <td>{{s.2}}</td>
                 <td>{{s.3}}</td>
-                <td><form method="POST" action="/delete/{{s.0}}"><button type="submit">Delete</button></form></td>
+                <td><form method="POST" action="/delete/{{s.0}}"><a href="/edit/{{s.0}}">Edit</a><button type="submit">Delete</button></form></td>
             </tr>
             {% endfor %}
 
