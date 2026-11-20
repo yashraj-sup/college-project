@@ -1,6 +1,6 @@
 # A Student Management System with add,update,edit,delete feature built with Flask and MySQL
 ## Requirements
- A MYSQL server with a user called yash and database called College
+ A MySQL server with a user called yash and database called College
 ## Setup
  1. Run ` 
  college.sql
